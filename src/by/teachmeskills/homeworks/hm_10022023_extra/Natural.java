@@ -5,7 +5,7 @@ public class Natural {
         System.out.println(findSum(10));
     }
 
-    static int findSum (int number) {
+    private static int findSum (int number) {
         if(number > 0) {
             int sum  = 0;
             for (int i = 1; i < number; i++) {

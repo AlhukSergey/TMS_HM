@@ -4,7 +4,7 @@ public class Maskify {
     public static void main(String[] args) {
         System.out.println(maskify("Hello world!"));
     }
-    static String maskify(String str) {
+    private static String maskify(String str) {
         char[] charArray = str.toCharArray();
         for(int i = 0; i <= charArray.length - 5; i++) {
             charArray[i] = '#';

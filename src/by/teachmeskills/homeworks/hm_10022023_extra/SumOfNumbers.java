@@ -4,7 +4,7 @@ public class SumOfNumbers {
     public static void main(String[] args) {
         System.out.println(findSum(0,-1));
     }
-    static int findSum(int a, int b) {
+    private static int findSum(int a, int b) {
         int sum = 0;
         if (a == b) {
             sum = a;
