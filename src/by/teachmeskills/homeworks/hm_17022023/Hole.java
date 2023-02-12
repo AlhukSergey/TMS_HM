@@ -3,36 +3,38 @@ package by.teachmeskills.homeworks.hm_17022023;
 import java.util.Scanner;
 
 public class Hole {
+    private static double width = 0;
+    private static double height = 0;
+    private static double radius = 0;
     public static void main(String[] args) {
-        double width = 0;
-        double height = 0;
-        double radius = 0;
         Scanner sc = new Scanner(System.in);
+        boolean flag = true;
 
-        consoleInput(sc, width, height, radius);
-
-        System.out.println(radius * 2 >= Math.max(width, height) ? "True!" : "False!");
-
-        /*if(2 * radius >= Math.max(width, height)) {
-            System.out.println("True!");
-        } else {
-            System.out.println("False!");
-        }*/
+        while (flag) {
+            try {
+                consoleInput(sc);
+                System.out.println(width + " " + height + " " + radius);
+                System.out.println(radius * 2 >= Math.max(width, height) ?
+                        "You can overlap your rectangle with the circle with the radius " + radius + "!":
+                        "You can't overlap your rectangle with the circle with the radius " + radius + "!");
+                flag = false;
+            } catch (NumberFormatException e) {
+                System.out.println("Incorrect data entered! Please, enter numbers.");
+            }
+        }
     }
 
-    private static void consoleInput(Scanner scanner, double width, double height, double radius) {
+    private static void consoleInput(Scanner scanner) {
         System.out.println("Enter the width of the rectangle:");
-        width = scanner.nextDouble();
+        width = Double.parseDouble(scanner.next());
         System.out.println("Enter the height of the rectangle:");
-        height = scanner.nextDouble();
+        height = Double.parseDouble(scanner.next());
         System.out.println("Enter the radius:");
-        radius = scanner.nextDouble();
-
-        // Нужна еще проверка на то, что введено именно число?!
+        radius = Double.parseDouble(scanner.next());
 
         if(width <= 0 || height <=0 || radius <= 0) {
             System.out.println("Incorrect data entered!");
-            consoleInput(scanner, width, height, radius);
+            consoleInput(scanner);
         }
     }
 }
