@@ -30,7 +30,7 @@ public class DayOfTheWeek {
                     }
                 }
                 flag = false;
-            } catch (NumberFormatException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println("Invalid data entered. Enter a number from 1 to 10, please..");
             }
         }
