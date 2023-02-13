@@ -81,11 +81,11 @@ public class Array {
     }
 
     private static void calculateIfOneElementArraySize(double[] array) {
-        System.out.println("The result of multiplying numbers from minimum to maximum is : " + array[0] + ".");
+        System.out.println("This array has only one number. The result of multiplying is : " + array[0] + ".");
         if (array[0] < 0) {
-            System.out.println("The sum of the negative numbers is : " + array[0] + ".");
+            System.out.println("This array has only one number and the number is negative.So the sum of the negative numbers is : " + array[0] + ".");
         } else {
-            System.out.println("The sum of the negative numbers is : 0.");
+            System.out.println("This array has only one number and the number is positive.So the sum of the negative numbers is : 0.");
         }
     }
 }
