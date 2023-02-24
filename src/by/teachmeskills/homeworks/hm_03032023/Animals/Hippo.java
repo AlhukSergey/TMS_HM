@@ -1,4 +1,4 @@
-package by.teachmeskills.homeworks.hm_03032023;
+package by.teachmeskills.homeworks.hm_03032023.Animals;
 
 public class Hippo extends Animal {
     public Hippo(String picture, String food, int hungerLevel, Boundaries boundaries, Location location) {

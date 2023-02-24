@@ -1,4 +1,4 @@
-package by.teachmeskills.homeworks.hm_03032023;
+package by.teachmeskills.homeworks.hm_03032023.Animals;
 
 public class Dog extends Canine {
     public Dog(String picture, String food, int hungerLevel, Boundaries boundaries, Location location) {

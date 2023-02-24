@@ -1,4 +1,4 @@
-package by.teachmeskills.homeworks.hm_03032023;
+package by.teachmeskills.homeworks.hm_03032023.Animals;
 public class Main {
     public static void main(String[] args) {
         Animal hippo = new Hippo("Hippo.png", "Grass", 6,

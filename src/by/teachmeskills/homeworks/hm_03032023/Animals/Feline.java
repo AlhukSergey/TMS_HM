@@ -1,4 +1,4 @@
-package by.teachmeskills.homeworks.hm_03032023;
+package by.teachmeskills.homeworks.hm_03032023.Animals;
 
 public abstract class Feline extends Animal {
 
