@@ -26,11 +26,6 @@ public class MilitaryTransport extends AirTransport {
                 '}';
     }
 
-    @Override
-    public double convertToKilowatts() {
-        return this.power * 0.74;
-    }
-
     public void fire() {
         System.out.println(this.missilesNumber > 0 ? "The rocket flew!!!" : "No ammo...");
     }

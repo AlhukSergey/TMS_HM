@@ -28,11 +28,6 @@ public class CivilTransport extends AirTransport implements CapacityChecker {
     }
 
     @Override
-    public double convertToKilowatts() {
-        return this.power * 0.74;
-    }
-
-    @Override
     public void checkCapacity(double capacity) {
         System.out.println(this.passengersNumber < capacity ? "You need the bigger airplane!" : "The airplane is swirling.");
     }

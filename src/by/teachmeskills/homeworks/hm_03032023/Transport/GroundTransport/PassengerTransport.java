@@ -51,9 +51,4 @@ public class PassengerTransport extends GroundTransport {
                 ", brand='" + brand + '\'' +
                 '}';
     }
-
-    @Override
-    public double convertToKilowatts() {
-        return this.power * 0.74;
-    }
 }
