@@ -1,14 +1,10 @@
 package by.teachmeskills.homeworks.hm_03032023.Robot.Legs;
 
-public class SonyLeg implements ILeg {
-    private int price;
-    private final String name = "Sony";
+import by.teachmeskills.homeworks.hm_03032023.Robot.Manufacturers.Sony;
 
-    public SonyLeg() {
-    }
-
+public class SonyLeg extends Sony implements ILeg {
     public SonyLeg(int price) {
-        this.price = price;
+        super(price);
     }
 
     @Override
@@ -18,11 +14,11 @@ public class SonyLeg implements ILeg {
 
     @Override
     public String getName() {
-        return name;
+        return NAME;
     }
 
     @Override
     public void step() {
-        System.out.println("Sony foot makes a step!");
+        System.out.println(NAME + " foot makes a step!");
     }
 }

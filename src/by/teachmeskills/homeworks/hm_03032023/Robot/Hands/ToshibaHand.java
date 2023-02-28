@@ -1,14 +1,10 @@
 package by.teachmeskills.homeworks.hm_03032023.Robot.Hands;
 
-public class ToshibaHand implements IHand {
-    private int price;
-    private final String name = "Toshiba";
+import by.teachmeskills.homeworks.hm_03032023.Robot.Manufacturers.Toshiba;
 
-    public ToshibaHand() {
-    }
-
+public class ToshibaHand extends Toshiba implements IHand {
     public ToshibaHand(int price) {
-        this.price = price;
+        super(price);
     }
 
     @Override
@@ -18,11 +14,12 @@ public class ToshibaHand implements IHand {
 
     @Override
     public String getName() {
-        return name;
+        return NAME;
     }
 
     @Override
     public void upHand() {
-        System.out.println("Toshiba hand goes up!");
+        System.out.println(NAME + " hand goes up!");
     }
 }
+

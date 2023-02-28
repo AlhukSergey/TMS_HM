@@ -1,14 +1,10 @@
 package by.teachmeskills.homeworks.hm_03032023.Robot.Hands;
 
-public class SamsungHand implements IHand {
-    private int price;
-    private final String name = "Samsung";
+import by.teachmeskills.homeworks.hm_03032023.Robot.Manufacturers.Samsung;
 
-    public SamsungHand() {
-    }
-
+public class SamsungHand extends Samsung implements IHand {
     public SamsungHand(int price) {
-        this.price = price;
+        super(price);
     }
 
     @Override
@@ -18,11 +14,11 @@ public class SamsungHand implements IHand {
 
     @Override
     public String getName() {
-        return name;
+        return NAME;
     }
 
     @Override
     public void upHand() {
-        System.out.println("Samsung hand goes up!");
+        System.out.println(NAME + " hand goes up!");
     }
 }

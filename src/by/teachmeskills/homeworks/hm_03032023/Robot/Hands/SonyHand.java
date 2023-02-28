@@ -1,14 +1,10 @@
 package by.teachmeskills.homeworks.hm_03032023.Robot.Hands;
 
-public class SonyHand implements IHand {
-    private int price;
-    private final String name = "Sony";
+import by.teachmeskills.homeworks.hm_03032023.Robot.Manufacturers.Sony;
 
-    public SonyHand() {
-    }
-
+public class SonyHand extends Sony implements IHand {
     public SonyHand(int price) {
-        this.price = price;
+        super(price);
     }
 
     @Override
@@ -18,11 +14,11 @@ public class SonyHand implements IHand {
 
     @Override
     public String getName() {
-        return name;
+        return NAME;
     }
 
     @Override
     public void upHand() {
-        System.out.println("Sony hand goes up!");
+        System.out.println(NAME + " hand goes up!");
     }
 }

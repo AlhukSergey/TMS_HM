@@ -1,14 +1,10 @@
 package by.teachmeskills.homeworks.hm_03032023.Robot.Heads;
 
-public class ToshibaHead implements IHead {
-    private int price;
-    private final String name = "Toshiba";
+import by.teachmeskills.homeworks.hm_03032023.Robot.Manufacturers.Toshiba;
 
-    public ToshibaHead() {
-    }
-
+public class ToshibaHead extends Toshiba implements IHead {
     public ToshibaHead(int price) {
-        this.price = price;
+        super(price);
     }
 
     @Override
@@ -18,11 +14,11 @@ public class ToshibaHead implements IHead {
 
     @Override
     public String getName() {
-        return name;
+        return NAME;
     }
 
     @Override
     public void speak() {
-        System.out.println("Toshiba head is speaking!");
+        System.out.println(NAME + " head is speaking!");
     }
 }

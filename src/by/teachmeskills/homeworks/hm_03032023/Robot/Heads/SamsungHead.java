@@ -1,14 +1,10 @@
 package by.teachmeskills.homeworks.hm_03032023.Robot.Heads;
 
-public class SamsungHead implements IHead {
-    private int price;
-    private final String name = "Samsung";
+import by.teachmeskills.homeworks.hm_03032023.Robot.Manufacturers.Samsung;
 
-    public SamsungHead() {
-    }
-
+public class SamsungHead extends Samsung implements IHead {
     public SamsungHead(int price) {
-        this.price = price;
+        super(price);
     }
 
     @Override
@@ -18,11 +14,11 @@ public class SamsungHead implements IHead {
 
     @Override
     public String getName() {
-        return name;
+        return NAME;
     }
 
     @Override
     public void speak() {
-        System.out.println("Samsung head is speaking!");
+        System.out.println(NAME + " head is speaking!");
     }
 }

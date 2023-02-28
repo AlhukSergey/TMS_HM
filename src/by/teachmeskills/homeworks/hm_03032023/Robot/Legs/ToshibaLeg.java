@@ -1,14 +1,10 @@
 package by.teachmeskills.homeworks.hm_03032023.Robot.Legs;
 
-public class ToshibaLeg implements ILeg {
-    private int price;
-    private final String name = "Toshiba";
+import by.teachmeskills.homeworks.hm_03032023.Robot.Manufacturers.Toshiba;
 
-    public ToshibaLeg() {
-    }
-
+public class ToshibaLeg extends Toshiba implements ILeg {
     public ToshibaLeg(int price) {
-        this.price = price;
+        super(price);
     }
 
     @Override
@@ -18,11 +14,11 @@ public class ToshibaLeg implements ILeg {
 
     @Override
     public String getName() {
-        return name;
+        return NAME;
     }
 
     @Override
     public void step() {
-        System.out.println("Toshiba foot makes a step!");
+        System.out.println(NAME + " foot makes a step!");
     }
 }
