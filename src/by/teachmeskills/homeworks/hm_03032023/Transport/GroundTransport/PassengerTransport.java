@@ -1,10 +1,8 @@
 package by.teachmeskills.homeworks.hm_03032023.Transport.GroundTransport;
 
-import by.teachmeskills.homeworks.hm_03032023.Transport.Converter;
-
 import java.util.Scanner;
 
-public class PassengerTransport extends GroundTransport implements Converter {
+public class PassengerTransport extends GroundTransport {
     private static double length;
     protected String bodyType;
     protected int passengersNumber;

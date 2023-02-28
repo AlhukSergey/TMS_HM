@@ -1,9 +1,8 @@
 package by.teachmeskills.homeworks.hm_03032023.Transport.AirTransport;
 
 import by.teachmeskills.homeworks.hm_03032023.Transport.CapacityChecker;
-import by.teachmeskills.homeworks.hm_03032023.Transport.Converter;
 
-public class CivilTransport extends AirTransport implements Converter, CapacityChecker {
+public class CivilTransport extends AirTransport implements CapacityChecker {
     protected int passengersNumber;
     protected boolean hasBusinessClass;
 

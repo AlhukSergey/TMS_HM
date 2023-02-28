@@ -1,8 +1,6 @@
 package by.teachmeskills.homeworks.hm_03032023.Transport.AirTransport;
 
-import by.teachmeskills.homeworks.hm_03032023.Transport.Converter;
-
-public class MilitaryTransport extends AirTransport implements Converter {
+public class MilitaryTransport extends AirTransport {
     protected boolean hasEjectionSystem;
     protected int missilesNumber;
 

@@ -1,9 +1,8 @@
 package by.teachmeskills.homeworks.hm_03032023.Transport.GroundTransport;
 
 import by.teachmeskills.homeworks.hm_03032023.Transport.CapacityChecker;
-import by.teachmeskills.homeworks.hm_03032023.Transport.Converter;
 
-public class CargoTransport extends GroundTransport implements Converter, CapacityChecker {
+public class CargoTransport extends GroundTransport implements CapacityChecker {
     protected double loadCapacity;
 
     public CargoTransport(int power, double maxSpeed, int weight, String brand, int wheelsNumber, double fuelConsumption,
@@ -24,11 +23,6 @@ public class CargoTransport extends GroundTransport implements Converter, Capaci
                 ", weight=" + weight + " кг" +
                 ", brand='" + brand + '\'' +
                 '}';
-    }
-
-    @Override
-    public double convertToKilowatts() {
-        return this.power * 0.74;
     }
 
     @Override
