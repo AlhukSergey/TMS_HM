@@ -67,4 +67,16 @@ public class Shop {
             }
         }
     }
+
+    public ArrayList<Product> sortByPrice(ArrayList<Product> productsList) {
+        ArrayList<Product> products = (ArrayList<Product>)productsList.clone();
+        for (int i = 1; i < productsList.size(); i++) {
+            if (productsList.get(i).getPrice() < productsList.get(i - 1).getPrice()) {
+                Product temp = productsList.get(i);
+                productsList.set(i, productsList.get(i - 1));
+                productsList.set(i - 1, temp);
+            }
+        }
+        return products;
+    }
 }

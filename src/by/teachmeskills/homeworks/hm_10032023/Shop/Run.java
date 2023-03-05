@@ -10,9 +10,9 @@ public class Run {
     public static void main(String[] args) {
         Shop shop = new Shop();
 
-        Product rice = new Product("rice", 3.7);
+        Product rice = new Product("rice", 10);
         Product cupcake = new Product("cupcake", 7);
-        Product milk = new Product("milk", 3.7);
+        Product milk = new Product("milk", 7);
 
         Product[] products = {rice, cupcake, milk};
 
@@ -26,7 +26,8 @@ public class Run {
 
         try {
             ArrayList<Product> productsInShop = shop.getProductsList();
-            for (Product product : productsInShop) {
+            ArrayList<Product> sortedProductsInShopList = shop.sortByPrice(productsInShop);
+            for (Product product : sortedProductsInShopList) {
                 System.out.println(product.getNAME());
             }
         } catch (EmptyProductListException e) {
