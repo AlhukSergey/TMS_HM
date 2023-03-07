@@ -2,22 +2,22 @@ package by.teachmeskills.homeworks.hm_10032023.Shop;
 
 public class Product {
     private static int idInitializer;
-    private final int ID;
-    private final String NAME;
+    private int id;
+    private String name;
     private double price;
 
-    public Product(String NAME, double price) {
-        this.NAME = NAME;
+    public Product(String name, double price) {
+        this.name = name;
         this.price = price;
-        this.ID = idInitializer++;
+        this.id = idInitializer++;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public String getNAME() {
-        return NAME;
+    public String getName() {
+        return name;
     }
 
     public double getPrice() {
@@ -29,6 +29,6 @@ public class Product {
     }
 
     public String showProductInfo() {
-        return this.NAME + " " + this.price;
+        return this.name + " " + this.price;
     }
 }

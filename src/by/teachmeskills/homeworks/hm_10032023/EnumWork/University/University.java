@@ -5,7 +5,7 @@ public class University {
     private int studentsNumber;
     private String season;
 
-    public enum Season {
+    private enum Season {
         WINTER("winter"),
         SPRING("spring"),
         SUMMER("summer"),

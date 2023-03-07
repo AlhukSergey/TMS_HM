@@ -1,8 +1,8 @@
 package by.teachmeskills.homeworks.hm_10032023.Shop;
 
-import by.teachmeskills.homeworks.hm_10032023.Shop.excepcions.EmptyProductListException;
-import by.teachmeskills.homeworks.hm_10032023.Shop.excepcions.EntityAlreadyExistsException;
-import by.teachmeskills.homeworks.hm_10032023.Shop.excepcions.EntityNotFoundException;
+import by.teachmeskills.homeworks.hm_10032023.Shop.exceptions.EmptyProductListException;
+import by.teachmeskills.homeworks.hm_10032023.Shop.exceptions.EntityAlreadyExistsException;
+import by.teachmeskills.homeworks.hm_10032023.Shop.exceptions.EntityNotFoundException;
 
 import java.util.ArrayList;
 
@@ -10,18 +10,12 @@ public class Shop {
     private final ArrayList<Product> productsList = new ArrayList<>();
 
     public void addProduct(Product product) throws EntityAlreadyExistsException {
-        boolean flag = false;
         for (Product value : productsList) {
-            if (value.getID() == product.getID()) {
-                flag = true;
-                break;
+            if (value.getId() == product.getId()) {
+                throw new EntityAlreadyExistsException("The product with " + product.getId() + "already exists.");
             }
         }
-        if (flag) {
-            throw new EntityAlreadyExistsException("The product exists.");
-        } else {
-            this.productsList.add(product);
-        }
+        this.productsList.add(product);
     }
 
     public ArrayList<Product> getProductsList() throws EmptyProductListException {
@@ -38,7 +32,7 @@ public class Shop {
         } else {
             boolean flag = false;
             for (int i = 0; i < productsList.size(); i++) {
-                if (productsList.get(i).getID() == id) {
+                if (productsList.get(i).getId() == id) {
                     flag = true;
                     productsList.remove(i);
                     break;
@@ -56,7 +50,7 @@ public class Shop {
         } else {
             boolean flag = false;
             for (Product product : productsList) {
-                if (product.getID() == id) {
+                if (product.getId() == id) {
                     flag = true;
                     product.setPrice(newPrice);
                     break;
@@ -69,7 +63,7 @@ public class Shop {
     }
 
     public ArrayList<Product> sortByPrice(ArrayList<Product> productsList) {
-        ArrayList<Product> products = (ArrayList<Product>)productsList.clone();
+        ArrayList<Product> products = (ArrayList<Product>) productsList.clone();
         for (int i = 1; i < productsList.size(); i++) {
             if (productsList.get(i).getPrice() < productsList.get(i - 1).getPrice()) {
                 Product temp = productsList.get(i);

@@ -1,8 +1,8 @@
 package by.teachmeskills.homeworks.hm_10032023.Shop;
 
-import by.teachmeskills.homeworks.hm_10032023.Shop.excepcions.EmptyProductListException;
-import by.teachmeskills.homeworks.hm_10032023.Shop.excepcions.EntityAlreadyExistsException;
-import by.teachmeskills.homeworks.hm_10032023.Shop.excepcions.EntityNotFoundException;
+import by.teachmeskills.homeworks.hm_10032023.Shop.exceptions.EmptyProductListException;
+import by.teachmeskills.homeworks.hm_10032023.Shop.exceptions.EntityAlreadyExistsException;
+import by.teachmeskills.homeworks.hm_10032023.Shop.exceptions.EntityNotFoundException;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ public class Run {
             ArrayList<Product> productsInShop = shop.getProductsList();
             ArrayList<Product> sortedProductsInShopList = shop.sortByPrice(productsInShop);
             for (Product product : sortedProductsInShopList) {
-                System.out.println(product.getNAME());
+                System.out.println(product.getName());
             }
         } catch (EmptyProductListException e) {
             throw new RuntimeException(e);
