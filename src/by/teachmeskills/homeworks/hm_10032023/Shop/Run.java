@@ -4,7 +4,7 @@ import by.teachmeskills.homeworks.hm_10032023.Shop.exceptions.EmptyProductListEx
 import by.teachmeskills.homeworks.hm_10032023.Shop.exceptions.EntityAlreadyExistsException;
 import by.teachmeskills.homeworks.hm_10032023.Shop.exceptions.EntityNotFoundException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Run {
     public static void main(String[] args) {
@@ -25,8 +25,8 @@ public class Run {
         }
 
         try {
-            ArrayList<Product> productsInShop = shop.getProductsList();
-            ArrayList<Product> sortedProductsInShopList = shop.sortByPrice(productsInShop);
+            List<Product> productsInShop = shop.getProductsList();
+            List<Product> sortedProductsInShopList = shop.sortByPrice(productsInShop);
             for (Product product : sortedProductsInShopList) {
                 System.out.println(product.getName());
             }
@@ -41,7 +41,7 @@ public class Run {
         }
         System.out.println("______________________________");
         try {
-            ArrayList<Product> productsInShop = shop.getProductsList();
+            List<Product> productsInShop = shop.getProductsList();
             for (Product product : productsInShop) {
                 System.out.println(product.showProductInfo());
             }
@@ -63,7 +63,7 @@ public class Run {
         }
 
         try {
-            shop.deleteProduct(4);
+            shop.deleteProduct(5);
         } catch (EmptyProductListException | EntityNotFoundException e) {
             throw new RuntimeException(e);
         }

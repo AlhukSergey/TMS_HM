@@ -5,9 +5,11 @@ import by.teachmeskills.homeworks.hm_10032023.Shop.exceptions.EntityAlreadyExist
 import by.teachmeskills.homeworks.hm_10032023.Shop.exceptions.EntityNotFoundException;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class Shop {
-    private final ArrayList<Product> productsList = new ArrayList<>();
+    private final List<Product> productsList = new ArrayList<>();
 
     public void addProduct(Product product) throws EntityAlreadyExistsException {
         for (Product value : productsList) {
@@ -18,7 +20,7 @@ public class Shop {
         this.productsList.add(product);
     }
 
-    public ArrayList<Product> getProductsList() throws EmptyProductListException {
+    public List<Product> getProductsList() throws EmptyProductListException {
         if (this.productsList.isEmpty()) {
             throw new EmptyProductListException("No products found.");
         } else {
@@ -29,48 +31,45 @@ public class Shop {
     public void deleteProduct(int id) throws EmptyProductListException, EntityNotFoundException {
         if (this.productsList.isEmpty()) {
             throw new EmptyProductListException("No products found.");
-        } else {
-            boolean flag = false;
-            for (int i = 0; i < productsList.size(); i++) {
-                if (productsList.get(i).getId() == id) {
-                    flag = true;
-                    productsList.remove(i);
+        } else if (containsProduct(productsList, id)) {
+            for (Product product : productsList) {
+                if (product.getId() == id) {
+                    productsList.remove(product);
                     break;
                 }
             }
-            if (flag == false) {
-                throw new EntityNotFoundException("Product with " + id + " not found.");
-            }
+        } else {
+            throw new EntityNotFoundException("Product with " + id + " not found.");
         }
     }
 
     public void editProductPrice(int id, double newPrice) throws EmptyProductListException, EntityNotFoundException {
-        if (this.productsList.isEmpty()) {
+        if (productsList.isEmpty()) {
             throw new EmptyProductListException("No products found.");
-        } else {
-            boolean flag = false;
+        } else if (containsProduct(productsList, id)) {
             for (Product product : productsList) {
                 if (product.getId() == id) {
-                    flag = true;
                     product.setPrice(newPrice);
                     break;
                 }
             }
-            if (flag == false) {
-                throw new EntityNotFoundException("Product with " + id + " not found.");
-            }
+        } else {
+            throw new EntityNotFoundException("Product with " + id + " not found.");
         }
     }
 
-    public ArrayList<Product> sortByPrice(ArrayList<Product> productsList) {
-        ArrayList<Product> products = (ArrayList<Product>) productsList.clone();
-        for (int i = 1; i < productsList.size(); i++) {
-            if (productsList.get(i).getPrice() < productsList.get(i - 1).getPrice()) {
-                Product temp = productsList.get(i);
-                productsList.set(i, productsList.get(i - 1));
-                productsList.set(i - 1, temp);
+    public List<Product> sortByPrice(List<Product> productsList) {
+        return productsList.stream().sorted(Comparator.comparingDouble(Product::getPrice)).toList();
+    }
+
+    private boolean containsProduct(List<Product> productsList, int id) {
+        boolean contains = false;
+        for (Product p : productsList) {
+            if (p.getId() == id) {
+                contains = true;
+                break;
             }
         }
-        return products;
+        return contains;
     }
 }
