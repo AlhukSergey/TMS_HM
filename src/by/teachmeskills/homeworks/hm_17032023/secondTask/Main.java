@@ -1,14 +1,21 @@
 package by.teachmeskills.homeworks.hm_17032023.secondTask;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 import static by.teachmeskills.homeworks.hm_17032023.secondTask.TextFormatter.*;
 
 public class Main {
+    private static final String ORIGINAL_FILE = "D:\\Study\\TMS\\hm_17032023\\secondTask\\original file.txt";
+    private static final String TARGET_FILE = "D:\\Study\\TMS\\hm_17032023\\secondTask\\target file.txt";
+
     public static void main(String[] args) {
-        try (BufferedReader bf = new BufferedReader(new FileReader("src\\by\\teachmeskills\\homeworks\\hm_17032023\\secondTask\\original file.txt"));
-             BufferedWriter bw = new BufferedWriter(new FileWriter("src\\by\\teachmeskills\\homeworks\\hm_17032023\\secondTask\\target file.txt"))) {
+        try (BufferedReader bf = new BufferedReader(new FileReader(ORIGINAL_FILE));
+             BufferedWriter bw = new BufferedWriter(new FileWriter(TARGET_FILE))) {
             ArrayList<String> strings = new ArrayList<>();
             String line;
             while ((line = bf.readLine()) != null) {
@@ -24,7 +31,7 @@ public class Main {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }
