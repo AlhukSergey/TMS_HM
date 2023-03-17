@@ -5,11 +5,11 @@ import by.teachmeskills.homeworks.hm_10032023.Shop.exceptions.EntityAlreadyExist
 import by.teachmeskills.homeworks.hm_10032023.Shop.exceptions.EntityNotFoundException;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 
 public class Shop {
-    private final List<Product> productsList = new ArrayList<>();
+    private List<Product> productsList = new ArrayList<>();
 
     public void addProduct(Product product) throws EntityAlreadyExistsException {
         for (Product value : productsList) {
@@ -58,8 +58,37 @@ public class Shop {
         }
     }
 
+    public void editProductName(int id, String name) throws EmptyProductListException, EntityNotFoundException {
+        if (productsList.isEmpty()) {
+            throw new EmptyProductListException("No products found.");
+        } else if (containsProduct(productsList, id)) {
+            for (Product product : productsList) {
+                if (product.getId() == id) {
+                    product.setName(name);
+                    break;
+                }
+            }
+        } else {
+            throw new EntityNotFoundException("Product with " + id + " not found.");
+        }
+    }
+
     public List<Product> sortByPrice(List<Product> productsList) {
-        return productsList.stream().sorted(Comparator.comparingDouble(Product::getPrice)).toList();
+        productsList.sort((o1, o2) -> (int) (o1.getPrice() - o2.getPrice()));
+        return productsList;
+    }
+
+    public void showProductsList(List<Product> list) {
+        for (Product product : list) {
+            System.out.println(product.getName());
+        }
+    }
+
+    public void showReversedProductsList(List<Product> list) {
+        Collections.reverse(list);
+        for (Product product : list) {
+            System.out.println(product.getName());
+        }
     }
 
     private boolean containsProduct(List<Product> productsList, int id) {

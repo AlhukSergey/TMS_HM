@@ -67,5 +67,24 @@ public class Run {
         } catch (EmptyProductListException | EntityNotFoundException e) {
             throw new RuntimeException(e);
         }
+
+        Shop shop2 = new Shop();
+
+        Product iceCream = new Product(1, "Ice cream", 8.3);
+        Product chocolate = new Product(2, "Chocolate", 3.1);
+        Product banana = new Product(3, "Banana", 10.0);
+
+        Product[] products2 = {iceCream, chocolate, banana};
+
+        for (Product product : products2) {
+            try {
+                shop2.addProduct(product);
+            } catch (EntityAlreadyExistsException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        ApplicationMenu applicationMenu = new ApplicationMenu();
+        applicationMenu.start(shop2);
     }
 }
