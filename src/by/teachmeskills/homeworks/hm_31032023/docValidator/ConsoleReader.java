@@ -5,7 +5,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleReader {
-    public List<String> readConsole() {
+    private ConsoleReader() {
+    }
+
+    public static List<String> readConsole() {
         List<String> list = new ArrayList<>();
         System.out.println("Please, enter the file path:");
         System.out.println("If you want to exit, please, enter \"0\".");

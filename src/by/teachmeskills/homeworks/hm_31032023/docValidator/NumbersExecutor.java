@@ -9,7 +9,10 @@ import java.util.HashSet;
 import java.util.List;
 
 public class NumbersExecutor {
-    public HashSet<String> executeNumbers(List<String> filesPath) throws EmptyFilesListException {
+    private NumbersExecutor() {
+    }
+
+    public static HashSet<String> executeNumbers(List<String> filesPath) throws EmptyFilesListException {
         if (filesPath.isEmpty()) {
             throw new EmptyFilesListException("The list is empty.");
         } else {
