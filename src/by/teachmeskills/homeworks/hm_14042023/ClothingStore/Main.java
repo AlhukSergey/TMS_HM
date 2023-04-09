@@ -4,6 +4,7 @@ import by.teachmeskills.homeworks.hm_14042023.ClothingStore.exceptions.EmptyProd
 
 public class Main {
     private static final String usersDB = "D:\\Study\\TMS\\hm_14042023\\userDB.txt";
+
     public static void main(String[] args) {
         //store initialization
         Store clothingStore = new Store("Reiss");

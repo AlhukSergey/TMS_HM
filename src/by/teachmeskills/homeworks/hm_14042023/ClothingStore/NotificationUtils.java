@@ -46,7 +46,7 @@ public class NotificationUtils {
                                 "Будем рады видеть Вас в нашем магазин!",
                         userData.get(0), store.getName(), store.getProductsListAsString(), userBirthdayForThisYear, plus7toUserBirthday);
             }
-        } else if(currentDate.isEqual(userBirthdayForThisYear)) {
+        } else if (currentDate.isEqual(userBirthdayForThisYear)) {
             if (userData.get(1).equals("male")) {
                 System.out.printf("Уважаемый %s, магазин %s поздравляет Вас с Днем рождения и дарит Вам в скидку 15%% на следующие товары %s. " +
                                 "Скидка действует с %4$td %4$tB %4$tY до %5$td %5$tB %5$tY. " +
@@ -58,7 +58,7 @@ public class NotificationUtils {
                                 "Будем рады видеть Вас в нашем магазин!",
                         userData.get(0), store.getName(), store.getProductsListAsString(), userBirthdayForThisYear, plus7toUserBirthday);
             }
-        } else if(currentDate.isEqual(plus6toUserBirthday)) {
+        } else if (currentDate.isEqual(plus6toUserBirthday)) {
             if (userData.get(1).equals("male")) {
                 System.out.printf("Уважаемый %s! Магазин %s напоминает Вам про скидку 15%% на следующие товары %s. " +
                                 "Скидка действует с %4$td %4$tB %4$tY до %5$td %5$tB %5$tY. " +
