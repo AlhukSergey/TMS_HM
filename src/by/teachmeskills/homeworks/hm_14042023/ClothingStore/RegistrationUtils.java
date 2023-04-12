@@ -1,35 +1,45 @@
 package by.teachmeskills.homeworks.hm_14042023.ClothingStore;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class RegistrationUtils {
-    private static final String usersDB = "D:\\Study\\TMS\\hm_14042023\\userDB.txt";
+    private static final String USER_DATA_FILE = "D:\\Study\\TMS\\hm_14042023\\userDB.txt";
 
     private RegistrationUtils() {
     }
 
-    private static List<String> readUserDate() {
-        List<String> userDate;
+    private static Map<String, String> readUserDate() {
+        Map<String, String> userData = new HashMap<>();
         System.out.println("Welcome to our clothing store!");
         System.out.println("To get the discount card of our store, please, enter some data about yourself.");
-        System.out.println("Please, enter your name (Ivan), gender (male/female), birthday (yyyy-mm-dd), " +
-                "phone number (format +375(33/29/44)1112233)), email(yours@gmail.com), separated by commas:");
+
         try (Scanner sc = new Scanner(System.in)) {
-            userDate = Arrays.asList(sc.nextLine().split(","));
+            System.out.println("Please, enter your name (Ivanov Ivan):");
+            userData.put("Name", sc.nextLine());
+            System.out.println("Your gender (male/female):");
+            userData.put("Gender", sc.nextLine());
+            System.out.println("Your birthday (yyyy-mm-dd):");
+            userData.put("Birthday", sc.nextLine());
+            System.out.println("Your phone number (format +375(33/29/44)1112233):");
+            userData.put("PhoneNumber", sc.nextLine());
+            System.out.println("Your email(yours@gmail.com)");
+            userData.put("Email", sc.nextLine());
         }
-        return userDate;
+        return userData;
     }
 
-    private static boolean validateDate(List<String> userData) {
+    private static boolean validateDate(Map<String, String> userData) {
         //if all validations true, the method will return "true".
         //if any validation returns "false", the method will return "false".
         boolean result = true;
@@ -38,33 +48,35 @@ public class RegistrationUtils {
         Predicate<String> isNotNull = Objects::nonNull;
         Predicate<String> isNotEmpty = line -> !line.isEmpty();
         Predicate<String> isNotNullAndEmpty = isNotNull.and(isNotEmpty);
-        userData.forEach(isNotNullAndEmpty::test);
+        for (Map.Entry<String, String> item : userData.entrySet()) {
+            isNotNullAndEmpty.test(item.getValue());
+        }
 
         // check date format
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false);
         try {
-            dateFormat.parse(userData.get(2));
+            dateFormat.parse(userData.get("Birthday"));
         } catch (ParseException e) {
             System.out.println(e.getMessage());
             result = false;
         }
 
         //check phone number
-        if (!((userData.get(3).contains("+37533") || userData.get(3).contains("+37529") || userData.get(3).contains("+37544"))
-                && userData.get(3).length() == 13)) {
+        if (!((userData.get("PhoneNumber").contains("+37533") || userData.get("PhoneNumber").contains("+37529") || userData.get("PhoneNumber").contains("+37544"))
+                && userData.get("PhoneNumber").length() == 13)) {
             result = false;
         }
         return result;
     }
 
     public static void createUserFile() {
-        List<String> userData = readUserDate();
+        Map<String, String> userData = readUserDate();
         if (validateDate(userData)) {
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter(usersDB))) {
-                for (String date : userData) {
-                    bw.write(date + "\n");
-                }
+            try {
+                Files.write(Paths.get(USER_DATA_FILE),
+                        userData.entrySet().stream().map(x -> x.getKey() + ":" + x.getValue()).collect(Collectors.toList()),
+                        StandardCharsets.UTF_8);
                 System.out.println("User successful created!");
             } catch (IOException e) {
                 System.out.println(e.getMessage());

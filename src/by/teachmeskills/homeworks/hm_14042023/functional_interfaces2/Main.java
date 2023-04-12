@@ -35,7 +35,7 @@ public class Main {
         System.out.println("________________");
 
         //5
-        Function<NumberForFI, String> numberEstimator = x -> {
+        Function<CustomNumber, String> numberEstimator = x -> {
             if (x.getNumber() < 0) {
                 return "Отрицательное число.";
             } else if (x.getNumber() == 0) {
@@ -44,8 +44,8 @@ public class Main {
                 return "Положительное число.";
             }
         };
-        NumberForFI numberForFI = new NumberForFI(-8.5F);
-        System.out.println(numberEstimator.apply(numberForFI));
+        CustomNumber customNumber = new CustomNumber(-8.5F);
+        System.out.println(numberEstimator.apply(customNumber));
         System.out.println("________________");
 
         //6

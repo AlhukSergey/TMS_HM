@@ -5,8 +5,8 @@ public class Main {
         String str = "Hello, user!";
         int num = 10;
 
-        OperationAble<String> operation1 = x -> new StringBuilder(x).reverse().toString();
-        OperationAble<Integer> operation2 = x -> {
+        Operationable<String> operation1 = x -> new StringBuilder(x).reverse().toString();
+        Operationable<Integer> operation2 = x -> {
             int result = 1;
             while (x != 1) {
                 result *= x;

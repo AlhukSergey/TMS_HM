@@ -3,7 +3,7 @@ package by.teachmeskills.homeworks.hm_14042023.ClothingStore;
 import by.teachmeskills.homeworks.hm_14042023.ClothingStore.exceptions.EmptyProductListException;
 
 public class Main {
-    private static final String usersDB = "D:\\Study\\TMS\\hm_14042023\\userDB.txt";
+    private static final String USER_DATA_FILE = "D:\\Study\\TMS\\hm_14042023\\userDB.txt";
 
     public static void main(String[] args) {
         //store initialization
@@ -16,7 +16,7 @@ public class Main {
         //give discount card and add user to DB
         RegistrationUtils.createUserFile();
         try {
-            NotificationUtils.sendNotification(usersDB, clothingStore);
+            NotificationUtils.sendNotification(USER_DATA_FILE, clothingStore);
         } catch (EmptyProductListException e) {
             System.out.println(e.getMessage());
         }
