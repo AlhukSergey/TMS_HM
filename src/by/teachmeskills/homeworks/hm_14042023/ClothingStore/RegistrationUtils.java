@@ -26,15 +26,15 @@ public class RegistrationUtils {
 
         try (Scanner sc = new Scanner(System.in)) {
             System.out.println("Please, enter your name (Ivanov Ivan):");
-            userData.put("Name", sc.nextLine());
+            userData.put("NAME", sc.nextLine());
             System.out.println("Your gender (male/female):");
-            userData.put("Gender", sc.nextLine());
+            userData.put("GENDER", sc.nextLine());
             System.out.println("Your birthday (yyyy-mm-dd):");
-            userData.put("Birthday", sc.nextLine());
+            userData.put("BIRTHDAY", sc.nextLine());
             System.out.println("Your phone number (format +375(33/29/44)1112233):");
-            userData.put("PhoneNumber", sc.nextLine());
+            userData.put("PHONE_NUMBER", sc.nextLine());
             System.out.println("Your email(yours@gmail.com)");
-            userData.put("Email", sc.nextLine());
+            userData.put("EMAIL", sc.nextLine());
         }
         return userData;
     }
@@ -56,15 +56,15 @@ public class RegistrationUtils {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false);
         try {
-            dateFormat.parse(userData.get("Birthday"));
+            dateFormat.parse(userData.get("BIRTHDAY"));
         } catch (ParseException e) {
             System.out.println(e.getMessage());
             result = false;
         }
 
         //check phone number
-        if (!((userData.get("PhoneNumber").contains("+37533") || userData.get("PhoneNumber").contains("+37529") || userData.get("PhoneNumber").contains("+37544"))
-                && userData.get("PhoneNumber").length() == 13)) {
+        if (!((userData.get("PHONE_NUMBER").contains("+37533") || userData.get("PHONE_NUMBER").contains("+37529") || userData.get("PHONE_NUMBER").contains("+37544"))
+                && userData.get("PHONE_NUMBER").length() == 13)) {
             result = false;
         }
         return result;

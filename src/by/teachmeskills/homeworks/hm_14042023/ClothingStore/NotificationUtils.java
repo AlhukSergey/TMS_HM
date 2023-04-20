@@ -29,7 +29,7 @@ public class NotificationUtils {
 
         //check data
         LocalDate currentDate = LocalDate.now();
-        LocalDate userBirthday = LocalDate.parse(userData.get("Birthday"));
+        LocalDate userBirthday = LocalDate.parse(userData.get("BIRTHDAY"));
         LocalDate thisYearUserBirthday = userBirthday.withYear(2023);
         LocalDate weekBeforeUserBirthday = thisYearUserBirthday.minusDays(7);
         LocalDate weekAfterUserBirthday = thisYearUserBirthday.plusDays(7);
@@ -47,47 +47,47 @@ public class NotificationUtils {
     }
 
     private static void sendNotificationBeforeBirthday(Map<String, String> userData, Store store, LocalDate thisYearUserBirthday, LocalDate weekAfterUserBirthday) {
-        switch (userData.get("Gender").toLowerCase()) {
+        switch (userData.get("GENDER")) {
             case "male" ->
                     System.out.printf("Уважаемый %s, магазин %s в Ваш День рождения дарит Вам в скидку 15%% на следующие товары %s. " +
                                     "Скидка действует с %4$td %4$tB %4$tY до %5$td %5$tB %5$tY. " +
                                     "Будем рады видеть Вас в нашем магазин!",
-                            userData.get("Name"), store.getName(), store.getProductsListAsString(), thisYearUserBirthday, weekAfterUserBirthday);
+                            userData.get("NAME"), store.getName(), store.getProductsListAsString(), thisYearUserBirthday, weekAfterUserBirthday);
             case "female" ->
                     System.out.printf("Уважаемая %s, магазин %s в Ваш День рождения дарит Вам в скидку 15%% на следующие товары %s." +
                                     " Скидка действует с %4$td %4$tB %4$tY до %5$td %5$tB %5$tY. " +
                                     "Будем рады видеть Вас в нашем магазин!",
-                            userData.get("Name"), store.getName(), store.getProductsListAsString(), thisYearUserBirthday, weekAfterUserBirthday);
+                            userData.get("NAME"), store.getName(), store.getProductsListAsString(), thisYearUserBirthday, weekAfterUserBirthday);
         }
     }
 
     private static void sendBirthdayNotification(Map<String, String> userData, Store store, LocalDate thisYearUserBirthday, LocalDate weekAfterUserBirthday) {
-        switch (userData.get("Gender").toLowerCase()) {
+        switch (userData.get("GENDER").toLowerCase()) {
             case "male" ->
                     System.out.printf("Уважаемый %s, магазин %s поздравляет Вас с Днем рождения и дарит Вам в скидку 15%% на следующие товары %s. " +
                                     "Скидка действует с %4$td %4$tB %4$tY до %5$td %5$tB %5$tY. " +
                                     "Будем рады видеть Вас в нашем магазин!",
-                            userData.get("Name"), store.getName(), store.getProductsListAsString(), thisYearUserBirthday, weekAfterUserBirthday);
+                            userData.get("NAME"), store.getName(), store.getProductsListAsString(), thisYearUserBirthday, weekAfterUserBirthday);
             case "female" ->
                     System.out.printf("Уважаемая %s, магазин %s поздравляет Вас с Днем рождения и дарит Вам в скидку 15%% на следующие товары %s." +
                                     " Скидка действует с %4$td %4$tB %4$tY до %5$td %5$tB %5$tY. " +
                                     "Будем рады видеть Вас в нашем магазин!",
-                            userData.get("Name"), store.getName(), store.getProductsListAsString(), thisYearUserBirthday, weekAfterUserBirthday);
+                            userData.get("NAME"), store.getName(), store.getProductsListAsString(), thisYearUserBirthday, weekAfterUserBirthday);
         }
     }
 
     private static void sendAfterBirthdayNotification(Map<String, String> userData, Store store, LocalDate dayBeforeDiscountFinished, LocalDate weekAfterUserBirthday) {
-        switch (userData.get("Gender").toLowerCase()) {
+        switch (userData.get("GENDER").toLowerCase()) {
             case "male" ->
                     System.out.printf("Уважаемый %s! Магазин %s напоминает Вам про скидку 15%% на следующие товары %s. " +
                                     "Скидка действует с %4$td %4$tB %4$tY до %5$td %5$tB %5$tY. " +
                                     "Будем рады видеть Вас в нашем магазин!",
-                            userData.get("Name"), store.getName(), store.getProductsListAsString(), dayBeforeDiscountFinished, weekAfterUserBirthday);
+                            userData.get("NAME"), store.getName(), store.getProductsListAsString(), dayBeforeDiscountFinished, weekAfterUserBirthday);
             case "female" ->
                     System.out.printf("Уважаемая %s! Магазин %s напоминает Вам про скидку 15%% на следующие товары %s. " +
                                     "Скидка действует с %4$td %4$tB %4$tY до %5$td %5$tB %5$tY. " +
                                     "Будем рады видеть Вас в нашем магазин!",
-                            userData.get("Name"), store.getName(), store.getProductsListAsString(), dayBeforeDiscountFinished, weekAfterUserBirthday);
+                            userData.get("NAME"), store.getName(), store.getProductsListAsString(), dayBeforeDiscountFinished, weekAfterUserBirthday);
         }
     }
 }
