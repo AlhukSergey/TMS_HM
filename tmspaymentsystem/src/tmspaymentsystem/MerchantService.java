@@ -12,21 +12,22 @@ import java.util.Optional;
 public class MerchantService {
     private List<Merchant> merchants = new ArrayList<>();
 
-    public BankAccount addBankAccount(Merchant merchant, BankAccount bankAccount) {
+    public BankAccount addBankAccount(String merchantId, BankAccount bankAccount) throws MerchantNotFoundException {
         validAccountNumber(bankAccount.getAccountNumber());
-        List<BankAccount> accounts = merchant.getBankAccounts();
-        Optional<BankAccount> account = accounts.stream().filter(s -> s.getAccountNumber().equals(bankAccount.getAccountNumber())).findAny();
+        Merchant merchant = getMerchantById(merchantId);
+        Optional<BankAccount> account = merchant.getBankAccounts().stream().filter(s -> s.getAccountNumber().equals(bankAccount.getAccountNumber())).findAny();
         if (account.isPresent()) {
             account.filter(s -> s.getStatus().equals(AccountStatus.DELETED)).ifPresent(s -> s.setStatus(AccountStatus.ACTIVE));
             return account.get();
         } else {
-            accounts.add(bankAccount);
+            merchant.getBankAccounts().add(bankAccount);
             FileService.writeToFile(FilesPaths.ACCOUNTS_FILE, bankAccount.toString());
             return bankAccount;
         }
     }
 
-    public List<BankAccount> getMerchantBankAccounts(Merchant merchant) throws NoBankAccountsFoundException {
+    public List<BankAccount> getMerchantBankAccounts(String merchantId) throws NoBankAccountsFoundException, MerchantNotFoundException {
+        Merchant merchant = getMerchantById(merchantId);
         if (merchant.getBankAccounts().isEmpty()) {
             throw new NoBankAccountsFoundException("This merchant has no any bank account yet.");
         } else {
@@ -34,11 +35,11 @@ public class MerchantService {
         }
     }
 
-    public BankAccount updateBankAccount(BankAccount bankAccount, String newAccountNumber, String merchantId) throws BankAccountNotFoundException, IllegalArgumentException, MerchantNotFoundException {
+    public BankAccount updateBankAccount(String bankAccountId, String newAccountNumber, String merchantId) throws BankAccountNotFoundException, IllegalArgumentException, MerchantNotFoundException {
         validAccountNumber(newAccountNumber);
-        Merchant merchant = findMerchantById(merchantId);
+        Merchant merchant = getMerchantById(merchantId);
         List<BankAccount> accounts = merchant.getBankAccounts();
-        Optional<BankAccount> account = accounts.stream().filter(s -> s.getAccountNumber().equals(bankAccount.getAccountNumber())).findAny();
+        Optional<BankAccount> account = accounts.stream().filter(s -> s.getAccountNumber().equals(bankAccountId)).findAny();
         if (account.isPresent()) {
             account.get().setAccountNumber(newAccountNumber);
             FileService.updateFile(FilesPaths.ACCOUNTS_FILE, accounts.stream().map(BankAccount::toString).toList());
@@ -48,11 +49,12 @@ public class MerchantService {
         }
     }
 
-    public boolean deleteBankAccount(BankAccount bankAccount, String merchantId) throws BankAccountNotFoundException, MerchantNotFoundException {
-        Merchant merchant = findMerchantById(merchantId);
+    public boolean deleteBankAccount(String bankAccountId, String merchantId) throws BankAccountNotFoundException, MerchantNotFoundException {
+        Merchant merchant = getMerchantById(merchantId);
         List<BankAccount> accounts = merchant.getBankAccounts();
-        if (accounts.contains(bankAccount)) {
-            accounts.remove(bankAccount);
+        Optional<BankAccount> account = accounts.stream().filter(s -> s.getAccountNumber().equals(bankAccountId)).findAny();
+        if (account.isPresent()) {
+            accounts.remove(account.get());
             FileService.updateFile(FilesPaths.ACCOUNTS_FILE, accounts.stream().map(BankAccount::toString).toList());
             return true;
         } else {
@@ -60,7 +62,8 @@ public class MerchantService {
         }
     }
 
-    public Merchant createMerchant(Merchant merchant) {
+    public Merchant createMerchant(String merchantName) {
+        Merchant merchant = new Merchant(merchantName);
         merchants.add(merchant);
         FileService.writeToFile(FilesPaths.MERCHANT_FILE, merchant.toString());
         return merchant;
@@ -70,7 +73,12 @@ public class MerchantService {
         return merchants;
     }
 
-    public Merchant getMerchantById(String id) throws MerchantNotFoundException {
+    public String showMerchant(String merchantId) throws MerchantNotFoundException {
+        Merchant merchant = getMerchantById(merchantId);
+        return merchant.toString();
+    }
+
+    private Merchant getMerchantById(String id) throws MerchantNotFoundException {
         Optional<Merchant> merchant = merchants.stream().filter(s -> s.getId().equals(id)).findAny();
         if (merchant.isPresent()) {
             return merchant.get();
@@ -90,18 +98,13 @@ public class MerchantService {
         }
     }
 
+    public BankAccount createBankAccount(String merchantId, String accountNumber) {
+        return new BankAccount(merchantId, accountNumber);
+    }
+
     private void validAccountNumber(String bankAccount) throws IllegalArgumentException {
         if (!bankAccount.matches("[0-9]{8}")) {
             throw new IllegalArgumentException("The account number contains incorrect dates.");
-        }
-    }
-
-    private Merchant findMerchantById(String merchantId) throws MerchantNotFoundException {
-        Optional<Merchant> merchant = merchants.stream().filter(s -> s.getId().equals(merchantId)).findAny();
-        if (merchant.isPresent()) {
-            return merchant.get();
-        } else {
-            throw new MerchantNotFoundException("No such merchant found!");
         }
     }
 }
