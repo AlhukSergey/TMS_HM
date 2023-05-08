@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!--определение простыхэлементов-->
+    <xs:element name="name" type="xs:string"/>
+    <xs:element name="position" type="xs:string"/>
+    <xs:element name="department" type="xs:string"/>
+    <xs:element name="experience" type="xs:positiveInteger"/>
+    <!--определение составных элементов-->
+    <xs:element name="employee">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="name"/>
+                <xs:element ref="position"/>
+                <xs:element ref="department"/>
+                <xs:element ref="experience"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="employees">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="employee" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="hospital">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="employees"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
