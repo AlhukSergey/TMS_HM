@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE hospital [
+        <!ELEMENT hospital (employees)*>
+        <!ATTLIST hospital
+                xmlns:xsi CDATA #REQUIRED
+                xsi:noNamespaceSchemaLocation CDATA #REQUIRED>
+        <!ELEMENT employees (employee)*>
+        <!ELEMENT employee (name|position|department|experience)*>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT position (#PCDATA)>
+        <!ELEMENT department (#PCDATA)>
+        <!ELEMENT experience (#PCDATA)>
+        ]>
+<hospital xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="medical_institution.xsd">
+    <employees>
+        <employee>
+            <name>Ivanov Ivan Jovanovich</name>
+            <position>Surgeon</position>
+            <department>Surgery department</department>
+            <experience>5</experience>
+        </employee>
+        <employee>
+            <name>Petrov Petr Petrovich</name>
+            <position>Therapist</position>
+            <department>Therapeutic department</department>
+            <experience>10</experience>
+        </employee>
+        <employee>
+            <name>Ivanova Inna Sergeevna</name>
+            <position>Nurse of 3 category</position>
+            <department>Surgery department</department>
+            <experience>12</experience>
+        </employee>
+        <employee>
+            <name>Petrova Mila Anatolievna</name>
+            <position>Nurse of 5 category</position>
+            <department>Therapeutic department</department>
+            <experience>20</experience>
+        </employee>
+    </employees>
+</hospital>
